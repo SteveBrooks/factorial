@@ -57,4 +57,66 @@ describe('factorial', function() {
         });
     });
 
+    describe('factorialAsync', function() {
+
+        it('should return 1 for 1!', function() {
+            factorial.factorialAsync(1, function(result) {
+                setTimeout(function(){
+                    result.should.be.ok;
+                    result.should.be.a('number');
+                    result.should.be.equal(1);
+                }, 1000);
+            });
+        });
+
+        it('should return 2 for 2!', function() {
+            factorial.factorialAsync(2, function(result) {
+                setTimeout(function(){
+                    result.should.be.ok;
+                    result.should.be.a('number');
+                    result.should.be.equal(2);
+                }, 1000);
+            });
+        });
+
+        it('should return 6 for 3!', function() {
+            factorial.factorialAsync(1, function(result) {
+                setTimeout(function(){
+                    result.should.be.ok;
+                    result.should.be.a('number');
+                    result.should.be.equal(6);
+                }, 1000);
+            });
+        });
+
+        it('should return greater than 9.33E+157 for 100!', function() {
+            factorial.factorialAsync(100, function(result) {
+                setTimeout(function(){
+                    result.should.be.ok;
+                    result.should.be.a('number');
+                    result.should.be.least(9.33E+157);
+                }, 1000);
+            });
+        });
+
+        it('should throw for negative numbers', function() {
+            (function() {
+                factorial.factorialAsync(-1)
+            }).should.throw('Only positive factorials are allowed.');
+        });
+
+        it('should throw for zero', function() {
+            (function() {
+                factorial.factorialAsync(0)
+            }).should.throw('Only positive factorials are allowed.');
+        });
+
+        it('should throw for non-numeric', function() {
+            (function() {
+                factorial.factorialAsync('X')
+            }).should.throw('The first argument must be a number.');
+        });
+
+    });
+
 });
