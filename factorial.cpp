@@ -2,6 +2,7 @@
 #include <nan.h>
 
 #include "factorialSync.h"
+#include "factorialAsync.h"
 
 using v8::FunctionTemplate;
 using v8::Handle;
@@ -13,6 +14,9 @@ void InitAll(Handle<Object> exports)
 {
     exports->Set(NanNew<String>("factorialSync"),
         NanNew<FunctionTemplate>(FactorialSync)->GetFunction());
+
+    exports->Set(NanNew<String>("factorialAsync"),
+        NanNew<FunctionTemplate>(FactorialAsync)->GetFunction());
 }
 
 NODE_MODULE(factorial, InitAll)
