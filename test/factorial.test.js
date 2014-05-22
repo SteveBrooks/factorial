@@ -8,7 +8,7 @@ describe('factorial', function() {
         factorial.should.be.a('object');
     })
 
-    describe('factorialSync', function() {
+    describe('#factorialSync', function() {
 
         it('should return 1 for 1!', function() {
             var result = factorial.factorialSync(1);
@@ -57,45 +57,47 @@ describe('factorial', function() {
         });
     });
 
-    describe('factorialAsync', function() {
+    describe('#factorialAsync', function() {
 
-        it('should return 1 for 1!', function() {
-            factorial.factorialAsync(1, function(result) {
-                setTimeout(function(){
-                    result.should.be.ok;
-                    result.should.be.a('number');
-                    result.should.be.equal(1);
-                }, 1000);
+        it('should return 1 for 1!', function(done) {
+            factorial.factorialAsync(1, function(err,res) {
+                if (err) return done(err);
+                res.should.be.ok;
+                res.should.be.a('number');
+                res.should.be.equal(1);
+                done();
             });
         });
 
-        it('should return 2 for 2!', function() {
-            factorial.factorialAsync(2, function(result) {
-                setTimeout(function(){
-                    result.should.be.ok;
-                    result.should.be.a('number');
-                    result.should.be.equal(2);
-                }, 1000);
+        it('should return 2 for 2!', function(done) {
+            factorial.factorialAsync(2, function(err,res) {
+                if (err) return done(err);
+                res.should.be.ok;
+                res.should.be.a('number');
+                res.should.be.equal(2);
+                done();
             });
         });
 
-        it('should return 6 for 3!', function() {
-            factorial.factorialAsync(1, function(result) {
-                setTimeout(function(){
-                    result.should.be.ok;
-                    result.should.be.a('number');
-                    result.should.be.equal(6);
-                }, 1000);
+        it('should return 6 for 3!', function(done) {
+            factorial.factorialAsync(3, function(err,res) {
+                if (err) return done(err);
+                res.should.not.be.null;
+                res.should.be.ok;
+                res.should.be.a('number');
+                res.should.be.equal(6);
+                done();
             });
         });
 
-        it('should return greater than 9.33E+157 for 100!', function() {
-            factorial.factorialAsync(100, function(result) {
-                setTimeout(function(){
-                    result.should.be.ok;
-                    result.should.be.a('number');
-                    result.should.be.least(9.33E+157);
-                }, 1000);
+        it('should return 24 for 4!', function(done) {
+            factorial.factorialAsync(4, function(err,res) {
+                if (err) return done(err);
+                res.should.not.be.null;
+                res.should.be.ok;
+                res.should.be.a('number');
+                res.should.be.equal(24);
+                done();
             });
         });
 

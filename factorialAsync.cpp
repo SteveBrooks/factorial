@@ -20,7 +20,7 @@ public:
         factorial = 1;
         for(double i=1; i<=n; i++)
         {
-            factorial *= factorial;
+            factorial *= i;
         }
     }
 
@@ -29,7 +29,7 @@ public:
         NanScope();
 
         Handle<Value> argv[] = {
-            NanNull(),
+            NanNull(), // Null Error
             NanNew<Number>(factorial)
         };
 
